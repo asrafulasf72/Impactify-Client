@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const {user,SignOut,setUser}=useContext(AuthContext)
+
+  const handleSignOut=()=>{
+      SignOut()
+      .then(()=>{
+        setUser(null)
+        toast.success("Log Out Succes!")
+      })
+      .catch((error)=>{
+          toast.error(error.message)
+      })
+  }
   const navlink = (
     <>
       <li>
@@ -36,7 +50,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
             >
               {navlink}
             </ul>
@@ -47,7 +61,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navlink}</ul>
         </div>
         <div className="navbar-end">
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center z-50">
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -75,12 +89,17 @@ const Navbar = () => {
                   <a>Settings</a>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  {
+                    user ? <a onClick={handleSignOut}>Logout</a> : <Link to='/login'>Login</Link>
+                  }
                 </li>
               </ul>
             </div>
             <div>
-                <button className="bg-green-500 px-4 py-1 rounded-[.5rem] text-white text-[1.2rem] font-medium"><Link to="/login">LogIn</Link></button>
+                {
+                  user ? " ":
+                  <button className="bg-green-500 px-4 py-1 rounded-[.5rem] text-white text-[1.2rem] font-medium"><Link to="/login">LogIn</Link></button>
+                }
             </div>
           </div>
         </div>

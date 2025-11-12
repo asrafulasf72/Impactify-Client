@@ -1,9 +1,34 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
-    const [showPass,setShowPass]=useState(false)
+  const [showPass, setShowPass] = useState(false);
+  const { signInUserWithGoogle , setUser} = useContext(AuthContext);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log({ email, password });
+  };
+
+  const loginWithGoogle = () => {
+    signInUserWithGoogle()
+      .then((res) => {
+        setUser(res.user)
+        console.log(res.user)
+        Swal.fire({
+          title: "LogIn Successful!",
+          icon: "success",
+          draggable: true,
+        });
+      })
+      .catch(() => {});
+  };
   return (
     <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8 mx-auto my-10">
       <div>
@@ -11,12 +36,13 @@ const LogIn = () => {
           Log In Your Account
         </h2>
       </div>
-      <form className="space-y-5">
+      <form onSubmit={handleLogin} className="space-y-5">
         <div>
           <label className="block text-sm mb-1">Email</label>
           <input
             type="email"
             name="email"
+            required
             placeholder="example@email.com"
             className="input input-bordered w-full bg-white/20 text-black placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
@@ -27,6 +53,7 @@ const LogIn = () => {
           <input
             type={showPass ? "text" : "password"}
             name="password"
+            required
             placeholder="••••••••"
             className="input input-bordered w-full bg-white/20 text-black placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
@@ -37,10 +64,7 @@ const LogIn = () => {
             {showPass ? <FiEye /> : <FiEyeOff />}
           </span>
           <p className="text-sm hover:underline text-blue-500 mt-1">
-            <button
-              className="text-blue-500 hover:underline"
-              type="button"
-            >
+            <button className="text-blue-500 hover:underline" type="button">
               Forgot Password?
             </button>
           </p>
@@ -62,6 +86,7 @@ const LogIn = () => {
 
         {/* Google Signin */}
         <button
+          onClick={loginWithGoogle}
           type="button"
           className="flex items-center justify-center gap-3 bg-white text-gray-800 px-5 py-2 rounded-lg w-full font-semibold hover:bg-gray-100 transition-colors cursor-pointer border-2 border-gray-200"
         >
