@@ -80,7 +80,7 @@ const Navbar = () => {
               </ul>
             </div>
             <div>
-                <button className="bg-green-500 px-4 py-1 rounded-[.5rem] text-white text-[1.2rem] font-medium"><Link>LogIn</Link></button>
+                <button className="bg-green-500 px-4 py-1 rounded-[.5rem] text-white text-[1.2rem] font-medium"><Link to="/login">LogIn</Link></button>
             </div>
           </div>
         </div>
