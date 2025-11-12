@@ -2,20 +2,21 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
+import "./nav.css";
 
 const Navbar = () => {
-  const {user,SignOut,setUser}=useContext(AuthContext)
+  const { user, SignOut, setUser } = useContext(AuthContext);
 
-  const handleSignOut=()=>{
-      SignOut()
-      .then(()=>{
-        setUser(null)
-        toast.success("Log Out Succes!")
+  const handleSignOut = () => {
+    SignOut()
+      .then(() => {
+        setUser(null);
+        toast.success("Log Out Succes!");
       })
-      .catch((error)=>{
-          toast.error(error.message)
-      })
-  }
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   const navlink = (
     <>
       <li>
@@ -27,7 +28,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-[#1f2937] text-white shadow-sm">
       <div className="flex w-[90%] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -50,19 +51,23 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+              className="menu text-black text-[1rem] font-semibold menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
             >
               {navlink}
             </ul>
           </div>
-          <Link to='/' className="btn btn-ghost text-xl">Impactify</Link>
+          <Link to="/" className="text-2xl font-bold text-green-500">
+            Impactify
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navlink}</ul>
+          <ul className="menu menu-horizontal px-1 text-[1rem] font-semibold">
+            {navlink}
+          </ul>
         </div>
         <div className="navbar-end">
           <div className="flex gap-2 items-center z-50">
-            <div className="dropdown dropdown-end">
+          {user &&  <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
@@ -71,7 +76,7 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    src={user?.photoURL}
                   />
                 </div>
               </div>
@@ -80,26 +85,36 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
                 <li>
-                  <a className="justify-between">
+                  <a className="justify-between text-black">
                     Profile
                     <span className="badge">New</span>
                   </a>
                 </li>
                 <li>
-                  <a>Settings</a>
+                  <a className="text-black">Settings</a>
                 </li>
                 <li>
-                  {
-                    user ? <a onClick={handleSignOut}>Logout</a> : <Link to='/login'>Login</Link>
-                  }
+                  {user ? (
+                    <a className="text-black" onClick={handleSignOut}>
+                      Logout
+                    </a>
+                  ) : (
+                    <Link className="text-black" to="/login">
+                      Login
+                    </Link>
+                  )}
                 </li>
               </ul>
             </div>
+            }
             <div>
-                {
-                  user ? " ":
-                  <button className="bg-green-500 px-4 py-1 rounded-[.5rem] text-white text-[1.2rem] font-medium"><Link to="/login">LogIn</Link></button>
-                }
+              {user ? (
+                " "
+              ) : (
+                <button className="bg-green-500 px-4 py-1 rounded-[.5rem] text-white text-[1.2rem] font-medium">
+                  <Link to="/login">LogIn</Link>
+                </button>
+              )}
             </div>
           </div>
         </div>

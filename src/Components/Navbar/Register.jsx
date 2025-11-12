@@ -1,9 +1,57 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const [showPass,setShowPass]=useState(false)
+     const [passError,setPassError]=useState("")
+     const {createUser,UpdateUserProfile,setUser,setloading}=useContext(AuthContext)
+         const location=useLocation();
+     const navigate=useNavigate()
+    
+      const handelRegister=(e)=>{
+      e.preventDefault();
+      const form=e.target
+      const displayName=form.name.value
+      const photoURL=form.photo.value 
+      const email=form.email.value 
+      const password=form.password.value 
+      
+      if(!/[A-Z]/.test(password)){
+        setPassError("Password must contain at least one uppercase letter.")
+        return;
+      }else if(!/[a-z]/.test(password)){
+        setPassError("Password must contain at least one lowercase letter.")
+        return;
+      }else if(password.length<6){
+        setPassError("Password must be at least 6 characters long.")
+        return;
+      }
+        setPassError("");
+      
+
+
+      createUser(email,password)
+            .then((res)=>{
+                  const user=res.user
+                   UpdateUserProfile({displayName,photoURL})
+                   .then(()=>{
+                      setUser({...user, displayName,photoURL})
+                   }).catch(()=>{
+                    setUser(user)
+                   })
+                   form.reset()
+                  navigate(`${location.state? location.state: "/"}`)
+                  toast.success("Sign Up Succesfully Done")
+                  
+              }).catch((error)=>{
+                setloading(false)
+                 toast.error(error.message)
+              })
+    }
+
   return (
     <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8 mx-auto my-10">
       <div>
@@ -11,7 +59,7 @@ const Register = () => {
           Sign Up Your Account
         </h2>
       </div>
-      <form  className="space-y-5">
+      <form onSubmit={handelRegister}  className="space-y-5">
         <div>
           <label className="block text-sm mb-1">Name</label>
           <input
@@ -61,9 +109,9 @@ const Register = () => {
             {showPass ? <FiEye /> : <FiEyeOff />}
           </span>
 
-          {/* {passError && (
+          {passError && (
             <p className="text-red-500 text-sm mt-1">{passError}</p>
-          )} */}
+          )} 
         </div>
 
         <button

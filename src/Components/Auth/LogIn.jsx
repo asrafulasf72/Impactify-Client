@@ -1,31 +1,47 @@
 import React, { useContext, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const LogIn = () => {
   const [showPass, setShowPass] = useState(false);
-  const { signInUserWithGoogle , setUser} = useContext(AuthContext);
+  const { signInUserWithGoogle ,signInUserWithEmail, setUser,setloading} = useContext(AuthContext);
+      const location=useLocation();
+     const navigate=useNavigate();
+ 
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log({ email, password });
+
+    signInUserWithEmail(email,password)
+    .then((res)=>{
+                  const user=res.user
+                  setUser(user)
+                  toast.success("Login In Success")
+                  navigate(`${location.state? location.state: "/"}`)
+              }).catch((error)=>{
+                  toast.error(error.message)
+                  setloading(false)
+              })
+    
   };
 
   const loginWithGoogle = () => {
     signInUserWithGoogle()
       .then((res) => {
-        setUser(res.user)
-        console.log(res.user)
+        const user=res.user
+        setUser(user)
         Swal.fire({
           title: "LogIn Successful!",
           icon: "success",
           draggable: true,
         });
+        navigate(`${location.state? location.state: "/"}`)
       })
       .catch(() => {});
   };
