@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react";
+import BannerSlider from "./BannerSlider";
+import OverviewSection from "./OverviewSection";
 
 const Home = () => {
-    return (
-        <div>
-              <h1>Here will be Home Page</h1>
-        </div>
-    );
+  return (
+    <div className="relative bg-[#f2f8f3]">
+      <BannerSlider />
+      <OverviewSection />
+    </div>
+  );
 };
 
 export default Home;
