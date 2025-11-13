@@ -4,6 +4,7 @@ import Home from "../Components/Home/Home";
 import UpcomingEvents from "../Pages/UpcomingEvents";
 import LogIn from "../Components/Auth/LogIn";
 import Register from "../Components/Navbar/Register";
+import CreateEvent from "../Pages/CreateEvent";
 
 export const router=createBrowserRouter([
     {
@@ -25,6 +26,10 @@ export const router=createBrowserRouter([
             {
                 path:"/register",
                 element:<Register />
+            },
+            {
+                path:"/create-event",
+                element:<CreateEvent />
             }
 
         ]
