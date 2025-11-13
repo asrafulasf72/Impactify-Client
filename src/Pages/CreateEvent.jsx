@@ -2,10 +2,12 @@ import React, { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../Components/Context/AuthContext";
+import { useNavigate } from "react-router";
 
 const CreateEvent = () => {
     const [eventDate, setEventDate] = useState(null);
     const {user}=useContext(AuthContext)
+    const navigate= useNavigate()
 
       const handleFormSubmit=(e)=>{
         e.preventDefault()
@@ -19,9 +21,23 @@ const CreateEvent = () => {
               created_by: user.email
 
            }
-           console.log(formData)
+           
+           fetch("http://localhost:3000/event",{
+              method:"POST",
+              headers:{
+                "Content-Type":"application/json",
+              },
+              body:JSON.stringify(formData)
+           })
+           .then((res)=>res.json())
+           .then((data)=>{
+            console.log(data)
+           })
+           .catch((error)=>{
+            console.log(error)
+           })
            e.target.reset()
-
+           navigate("/Upcoming-Events")
       }
 
   return (
@@ -44,6 +60,7 @@ const CreateEvent = () => {
             type="text"
             name="title"
             placeholder="Enter event title"
+            required
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
           />
         </div>
@@ -56,6 +73,7 @@ const CreateEvent = () => {
           <textarea
             rows="3"
             name="description"
+            required
             placeholder="Write a short event description..."
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
           ></textarea>
@@ -66,7 +84,7 @@ const CreateEvent = () => {
           <label className="block text-gray-700 font-medium mb-1">
             Event Type
           </label>
-          <select name="eventType" className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+          <select name="eventType" required className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
             <option value="">Select event type</option>
             <option value="Cleanup">Cleanup</option>
             <option value="Plantation">Plantation</option>
@@ -82,6 +100,7 @@ const CreateEvent = () => {
           <input
             type="text"
             name="thumbnail"
+            required
             placeholder="Enter thumbnail image link"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
           />
@@ -95,6 +114,7 @@ const CreateEvent = () => {
           <input
             type="text"
             name="location"
+            required
             placeholder="Enter event location"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
           />
@@ -107,6 +127,7 @@ const CreateEvent = () => {
           </label>
           <DatePicker
             name="date"
+            required
             selected={eventDate}
             onChange={(date) => setEventDate(date)}
             minDate={new Date()}

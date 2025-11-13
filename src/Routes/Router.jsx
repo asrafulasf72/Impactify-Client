@@ -17,7 +17,8 @@ export const router=createBrowserRouter([
             },
             {
                 path:"/Upcoming-Events",
-                element:<UpcomingEvents></UpcomingEvents>
+                element:<UpcomingEvents></UpcomingEvents>,
+                loader: ()=> fetch("http://localhost:3000/event")
             },
             {
                 path:"/login",
