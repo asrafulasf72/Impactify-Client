@@ -17,8 +17,9 @@ const CreateEvent = () => {
               eventType: e.target.eventType.value,
               thumbnail: e.target.thumbnail.value,
               location: e.target.location.value,
-              event_date: e.target.date.value,
-              created_by: user.email
+              event_date: eventDate,
+              created_by: user.email,
+              organizer_Name:user.displayName
 
            }
            
@@ -41,7 +42,7 @@ const CreateEvent = () => {
       }
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 bg-white shadow-lg rounded-2xl p-8">
+    <div className="max-w-2xl mx-auto my-10 bg-white shadow-lg rounded-2xl p-8">
       <h1 className="text-3xl font-bold text-center text-green-700 mb-2">
         Create a New Social Event
       </h1>
@@ -89,6 +90,8 @@ const CreateEvent = () => {
             <option value="Cleanup">Cleanup</option>
             <option value="Plantation">Plantation</option>
             <option value="Donation">Donation</option>
+            <option value="Renovation">Renovation</option>
+            <option value="Awareness">Awareness</option>
           </select>
         </div>
 

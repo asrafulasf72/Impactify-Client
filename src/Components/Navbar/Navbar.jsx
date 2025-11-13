@@ -51,7 +51,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu text-black text-[1rem] font-semibold menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+              className="menu text-black text-[1rem] font-semibold menu-sm dropdown-content bg-green-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
             >
               {navlink}
             </ul>
@@ -82,23 +82,26 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-green-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
                 <li>
-                  <Link to='/create-event' className="justify-between text-black">
+                  <Link to='/create-event' className="justify-between text-black text-[.8rem] font-semibold">
                     Create Event
                   </Link>
                 </li>
                 <li>
-                  <a className="text-black">Settings</a>
+                  <Link className="text-black text-[.8rem] font-semibold">Manage Events</Link>
+                </li>
+                <li>
+                   <Link className="text-black text-[.8rem] font-semibold">Join Events</Link>
                 </li>
                 <li>
                   {user ? (
-                    <a className="text-black" onClick={handleSignOut}>
+                    <a className="text-black text-[.8rem] font-semibold" onClick={handleSignOut}>
                       Logout
                     </a>
                   ) : (
-                    <Link className="text-black" to="/login">
+                    <Link className="text-black text-[.8rem] font-semibold" to="/login">
                       Login
                     </Link>
                   )}

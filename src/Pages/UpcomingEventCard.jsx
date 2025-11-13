@@ -1,7 +1,13 @@
 import React from "react";
+import { Link } from "react-router";
 
 const UpcomingEventCard = ({ event }) => {
-  const { title, eventType, thumbnail, location, event_date } = event;
+  const { title, eventType, thumbnail, location, event_date, _id } = event;
+    const formattedDate = new Date(event_date).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
@@ -54,15 +60,15 @@ const UpcomingEventCard = ({ event }) => {
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          {event_date}
+          {formattedDate}
         </p>
       </div>
 
       {/* View Event Button */}
       <div className="px-5 pb-4">
-        <button className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
+     <Link to={`/event-details/${_id}`}><button className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
           View Event
-        </button>
+        </button></Link>
       </div>
     </div>
   );
