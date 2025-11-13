@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../Components/Context/AuthContext";
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 const CreateEvent = () => {
     const [eventDate, setEventDate] = useState(null);
@@ -32,6 +33,7 @@ const CreateEvent = () => {
            })
            .then((res)=>res.json())
            .then((data)=>{
+            toast.success("Event Created Successfully!!")
             console.log(data)
            })
            .catch((error)=>{

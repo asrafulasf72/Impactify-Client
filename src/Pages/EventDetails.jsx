@@ -83,11 +83,8 @@ const EventDetails = () => {
 
         {/* Call to Action */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium shadow-md transition">
+          <button className="bg-green-600 hover:bg-green-700 text-white text-[1rem] font-bold px-6 py-3 rounded-lg shadow-md transition">
             Join Event
-          </button>
-          <button className="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium shadow-sm transition">
-            Contact Organizer
           </button>
         </div>
       </div>

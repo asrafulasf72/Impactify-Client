@@ -7,6 +7,7 @@ import Register from "../Components/Navbar/Register";
 import CreateEvent from "../Pages/CreateEvent";
 import PrivateRouter from "./PrivateRouter";
 import EventDetails from "../Pages/EventDetails";
+import ManageEvents from "../Pages/ManageEvents";
 
 export const router=createBrowserRouter([
     {
@@ -38,6 +39,10 @@ export const router=createBrowserRouter([
                 path:"/event-details/:id",
                 element:<EventDetails></EventDetails>,
                 loader: ({params})=> fetch(`http://localhost:3000/event-details/${params.id}`)
+            },
+            {
+                path:"/manage-events",
+                element: <PrivateRouter><ManageEvents /></PrivateRouter>
             }
 
         ]
