@@ -93,7 +93,7 @@ const Navbar = () => {
                   <Link to="/manage-events" className="text-black text-[.8rem] font-semibold">Manage Events</Link>
                 </li>
                 <li>
-                   <Link className="text-black text-[.8rem] font-semibold">Join Events</Link>
+                   <Link to='/join-event' className="text-black text-[.8rem] font-semibold">Join Events</Link>
                 </li>
                 <li>
                   {user ? (

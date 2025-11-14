@@ -1,8 +1,11 @@
-import React, { } from "react";
-import { useLoaderData } from "react-router";
+import React, { useContext } from "react";
+import { Link, useLoaderData } from "react-router";
+import { AuthContext } from "../Components/Context/AuthContext";
+import toast from "react-hot-toast";
 
 
 const EventDetails = () => {
+  const {user}=useContext(AuthContext)
 
   const data = useLoaderData();
   const {
@@ -13,7 +16,7 @@ const EventDetails = () => {
     location,
     event_date,
     created_by,
-     organizer_Name
+     organizer_Name,
   } = data;
 
     const formattedDate = new Date(event_date).toLocaleDateString("en-GB", {
@@ -21,6 +24,38 @@ const EventDetails = () => {
     month: "long",
     year: "numeric",
   });
+
+  const handleJoinEvent=()=>{
+        
+       const joinData={
+        eventTitle: title,
+        userName:user.displayName,
+        userEmail:user.email,
+        eventDate:formattedDate
+
+       }
+
+           fetch("http://localhost:3000/join-event",{
+              method:"POST",
+              headers:{
+                "Content-Type":"application/json",
+              },
+              body:JSON.stringify(joinData)
+           })
+           .then((res)=>res.json())
+           .then((data)=>{
+               if(data.message === "Already joined"){
+                toast.error("You already joined this event!")
+                return;
+               }
+                toast.success("Join Event Successfully!!")
+          
+           })
+           .catch((error)=>{
+            console.log(error)
+            toast.error(error.message)
+           })
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4 md:px-20">
@@ -83,9 +118,9 @@ const EventDetails = () => {
 
         {/* Call to Action */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4">
-          <button className="bg-green-600 hover:bg-green-700 text-white text-[1rem] font-bold px-6 py-3 rounded-lg shadow-md transition">
+         <Link to='/join-event'> <button onClick={handleJoinEvent} className="bg-green-600 hover:bg-green-700 text-white text-[1rem] font-bold px-6 py-3 rounded-lg shadow-md transition">
             Join Event
-          </button>
+          </button></Link>
         </div>
       </div>
     </div>

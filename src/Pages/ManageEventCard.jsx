@@ -37,7 +37,7 @@ const ManageEventCard = ({ event }) => {
           <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
             {title}
           </h2>
-          <p className="text-gray-600 text-sm sm:text-base line-clamp-3 mb-3">
+          <p className="text-gray-600 text-sm sm:text-base mb-3">
             {description}
           </p>
 
