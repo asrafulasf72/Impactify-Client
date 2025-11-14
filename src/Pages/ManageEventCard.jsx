@@ -1,5 +1,6 @@
 import React from "react";
 import { Calendar, Mail, MapPin, User } from "lucide-react";
+import { Link } from "react-router";
 
 const ManageEventCard = ({ event }) => {
   const {
@@ -11,6 +12,7 @@ const ManageEventCard = ({ event }) => {
     event_date,
     created_by,
     organizer_Name,
+    _id
   } = event;
 
   const formattedDate = new Date(event_date).toLocaleDateString("en-GB", {
@@ -69,9 +71,9 @@ const ManageEventCard = ({ event }) => {
 
         {/* Bottom (Optional Buttons) */}
         <div className="flex gap-3 mt-4">
-          <button className="px-4 py-2  bg-green-600 text-white text-[1rem] font-bold rounded-xl hover:bg-green-700 transition">
+         <Link to={`/update-event/${_id}`}> <button className="px-4 py-2  bg-green-600 text-white text-[1rem] font-bold rounded-xl hover:bg-green-700 transition">
             Update Event
-          </button>
+          </button></Link>
           <button className="px-4 py-2  bg-red-500 text-white text-[1rem] font-bold rounded-xl hover:bg-red-600 transition">
             Delete
           </button>
