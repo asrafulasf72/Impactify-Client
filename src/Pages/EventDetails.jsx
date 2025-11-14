@@ -31,6 +31,7 @@ const EventDetails = () => {
         eventTitle: title,
         userName:user.displayName,
         userEmail:user.email,
+        eventLocation:location,
         eventDate:formattedDate
 
        }
