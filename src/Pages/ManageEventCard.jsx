@@ -74,9 +74,6 @@ const ManageEventCard = ({ event }) => {
          <Link to={`/update-event/${_id}`}> <button className="px-4 py-2  bg-green-600 text-white text-[1rem] font-bold rounded-xl hover:bg-green-700 transition">
             Update Event
           </button></Link>
-          <button className="px-4 py-2  bg-red-500 text-white text-[1rem] font-bold rounded-xl hover:bg-red-600 transition">
-            Delete
-          </button>
         </div>
       </div>
     </div>

@@ -3,9 +3,10 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 import "./nav.css";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const Navbar = () => {
-  const { user, SignOut, setUser } = useContext(AuthContext);
+  const { user, SignOut, setUser, } = useContext(AuthContext);
 
   const handleSignOut = () => {
     SignOut()
@@ -67,17 +68,18 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="flex gap-2 items-center z-50">
-          {user &&  <div className="dropdown dropdown-end">
+          { user &&  <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <img
+                  <img id='userDisplayName'
                     alt={user.displayName}
                     src={user?.photoURL}
                   />
+                  <ReactTooltip anchorId='userDisplayName' place='bottom' content={`${user.displayName}`}></ReactTooltip>
                 </div>
               </div>
               <ul
