@@ -10,11 +10,14 @@ import EventDetails from "../Pages/EventDetails";
 import ManageEvents from "../Pages/ManageEvents";
 import JoinEvent from "../Pages/JoinEvent";
 import UpdateEvent from "../Pages/UpdateEvent";
+import ErrorPage from "../Components/ErrorPage/ErrorPage";
 
 export const router=createBrowserRouter([
     {
         path:'/',
         element:<Root></Root>,
+        errorElement:<ErrorPage />,
+        hydrateFallbackElement:<p>Loading...</p>,
         children:[
             {
                 index:true,
