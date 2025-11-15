@@ -12,17 +12,17 @@ const galleryImages = [
 
 const GallerySection = () => {
   return (
-    <section className="py-20 bg-[#f2f8f3]" id="gallery">
+    <section className="py-20 bg-base-100" id="gallery">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-gray-800 mb-4"
+          className="text-4xl font-bold text-base-content mb-4"
         >
           Event <span className="text-green-600">Gallery</span>
         </motion.h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-10">
+        <p className="text-base-content/70 max-w-2xl mx-auto mb-10">
           Glimpses of our community-driven social service activities.
         </p>
 

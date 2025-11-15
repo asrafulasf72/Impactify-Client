@@ -47,7 +47,7 @@ const UpcomingEvents = () => {
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
-          className="border border-gray-300 px-4 py-2 rounded-lg w-full md:w-1/4"
+          className="border text-black bg-green-100 text-[1rem] font-semibold border-gray-300 px-4 py-2 rounded-lg w-full md:w-1/4"
         >
           {eventTypes.map((type, index) => (
             <option key={index} value={type}>

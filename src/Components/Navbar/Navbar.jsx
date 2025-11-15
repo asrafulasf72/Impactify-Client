@@ -95,7 +95,7 @@ const Navbar = () => {
                     />
                     <ReactTooltip
                       anchorId="userDisplayName"
-                      place="bottom"
+                      place="left"
                       content={`${user.displayName}`}
                     ></ReactTooltip>
                   </div>

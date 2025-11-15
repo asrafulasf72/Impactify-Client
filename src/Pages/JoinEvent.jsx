@@ -21,19 +21,19 @@ const JoinEvent = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <p className="text-lg text-gray-500">Loading...</p>
+        <p className="text-lg text-base-content/70">Loading...</p>
       </div>
     );
   }
   return (
     <div className=" w-[90%] mx-auto my-10">
       <div className="text-center mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+        <h1 className="text-3xl md:text-4xl font-bold text-base-content">
           Your Joined Events
         </h1>
-        <p className="mt-3 text-gray-600 md:text-lg max-w-2xl mx-auto">
+        <p className="mt-3 text-base-content/80 md:text-lg max-w-2xl mx-auto">
           Here are the social development events you have joined and contributed
-          to — making your community a better place through active
+          to making your community a better place through active
           participation.
         </p>
       </div>
@@ -41,7 +41,7 @@ const JoinEvent = () => {
       
 
       {sortedEvents.length === 0 ? (
-        <p className="text-center text-gray-500">You Not Join Any Social  Event Yet</p>
+        <p className="text-center text-base-content/70">You Not Join Any Social  Event Yet</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedEvents.map((event) => (

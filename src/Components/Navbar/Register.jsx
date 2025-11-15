@@ -55,7 +55,7 @@ const Register = () => {
   return (
     <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8 mx-auto my-10">
       <div>
-        <h2 className="text-2xl font-semibold mb-2 text-center text-black">
+        <h2 className="text-2xl font-semibold mb-2 text-center text-base-content">
           Sign Up Your Account
         </h2>
       </div>
@@ -66,7 +66,7 @@ const Register = () => {
             type="text"
             name="name"
             placeholder="Jhon"
-            className="input input-bordered w-full bg-white/20 text-black placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="input input-bordered w-full bg-white/20 text-base-content placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />
         </div>
@@ -99,7 +99,7 @@ const Register = () => {
             type={showPass ? "text" : "password"}
             name="password"
             placeholder="••••••••"
-            className="input input-bordered w-full bg-white/20 text-black placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="input input-bordered w-full bg-white/20 text-base-content placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
             required
           />
           <span
@@ -123,11 +123,11 @@ const Register = () => {
 
         {/* Divider */}
         <div className="flex items-center justify-center gap-2 my-2">
-          <div className="h-px w-16 bg-gray-300"></div>
-          <span className="text-sm text-black/70">or</span>
-          <div className="h-px w-16 bg-gray-300"></div>
+          <div className="h-px w-16 bg-base-300"></div>
+          <span className="text-sm text-base-content">or</span>
+          <div className="h-px w-16 bg-base-300"></div>
         </div>
-        <p className="text-center text-sm text-black/80 mt-3">
+        <p className="text-center text-sm text-base-content mt-3">
           Already have an account?{" "}
           <Link
             to="/login"

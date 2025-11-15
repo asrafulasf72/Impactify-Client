@@ -3,17 +3,17 @@ import { motion } from "framer-motion";
 
 const NewsletterSection = () => {
   return (
-    <section className="py-20 bg-white" id="newsletter">
+    <section className="py-20 bg-base-100" id="newsletter">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-gray-800 mb-4"
+          className="text-4xl font-bold text-base-content mb-4"
         >
           Stay <span className="text-green-600">Connected</span>
         </motion.h2>
-        <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+        <p className="text-base-content/70 mb-8 max-w-2xl mx-auto">
           Subscribe to our newsletter and get updates on upcoming community
           events, volunteer opportunities, and success stories.
         </p>
@@ -31,7 +31,7 @@ const NewsletterSection = () => {
           />
           <button
             type="button"
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full transition"
+            className="bg-green-600 hover:bg-green-700 text-base-100 px-6 py-3 rounded-full transition"
           >
             Subscribe
           </button>

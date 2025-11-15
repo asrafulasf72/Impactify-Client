@@ -31,17 +31,17 @@ const features = [
 
 const FeatureSection = () => {
   return (
-    <section className=" bg-white mt-60 py-20" id="features">
+    <section className=" bg-base-100 mt-60 py-20" id="features">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-gray-800 mb-4"
+          className="text-4xl font-bold text-base-content mb-4"
         >
           Platform <span className="text-green-600">Features</span>
         </motion.h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+        <p className="text-base-content/70 max-w-2xl mx-auto mb-12">
           Empowering individuals and communities to act together for a cleaner,
           greener, and better tomorrow.
         </p>
@@ -53,13 +53,13 @@ const FeatureSection = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#f2f8f3] rounded-2xl shadow-md hover:shadow-xl transition p-8 flex flex-col items-center"
+              className="bg-base-100 rounded-2xl shadow-md hover:shadow-xl transition p-8 flex flex-col items-center"
             >
               <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl font-semibold text-base-content mb-2">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-sm">{feature.description}</p>
+              <p className="text-base-content/70 text-sm">{feature.description}</p>
             </motion.div>
           ))}
         </div>
