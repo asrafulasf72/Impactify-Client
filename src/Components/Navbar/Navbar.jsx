@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
@@ -6,7 +6,19 @@ import "./nav.css";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const Navbar = () => {
-  const { user, SignOut, setUser, } = useContext(AuthContext);
+  const { user, SignOut, setUser } = useContext(AuthContext);
+  const [theme, setTheme]=useState(localStorage.getItem("theme") || "light")
+
+  useEffect(()=>{
+         const html=document.querySelector('html')
+          html.setAttribute("data-theme", theme)
+          localStorage.setItem("theme", theme)
+
+  },[theme])
+
+  const handleTheme=(checked)=>{
+        setTheme(checked? "dark" : "light")  
+  }
 
   const handleSignOut = () => {
     SignOut()
@@ -68,49 +80,74 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="flex gap-2 items-center z-50">
-          { user &&  <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img id='userDisplayName'
-                    alt={user.displayName}
-                    src={user?.photoURL}
-                  />
-                  <ReactTooltip anchorId='userDisplayName' place='bottom' content={`${user.displayName}`}></ReactTooltip>
+            {user && (
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      id="userDisplayName"
+                      alt={user.displayName}
+                      src={user?.photoURL}
+                    />
+                    <ReactTooltip
+                      anchorId="userDisplayName"
+                      place="bottom"
+                      content={`${user.displayName}`}
+                    ></ReactTooltip>
+                  </div>
                 </div>
-              </div>
-              <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-green-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-              >
-                <li>
-                  <Link to='/create-event' className="justify-between text-black text-[.8rem] font-semibold">
-                    Create Event
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/manage-events" className="text-black text-[.8rem] font-semibold">Manage Events</Link>
-                </li>
-                <li>
-                   <Link to='/join-event' className="text-black text-[.8rem] font-semibold">Join Events</Link>
-                </li>
-                <li>
-                  {user ? (
-                    <a className="text-black text-[.8rem] font-semibold" onClick={handleSignOut}>
-                      Logout
-                    </a>
-                  ) : (
-                    <Link className="text-black text-[.8rem] font-semibold" to="/login">
-                      Login
+                <ul
+                  tabIndex="-1"
+                  className="menu menu-sm dropdown-content bg-green-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                >
+                  <li>
+                    <Link
+                      to="/create-event"
+                      className="justify-between text-black text-[.8rem] font-semibold"
+                    >
+                      Create Event
                     </Link>
-                  )}
-                </li>
-              </ul>
-            </div>
-            }
+                  </li>
+                  <li>
+                    <Link
+                      to="/manage-events"
+                      className="text-black text-[.8rem] font-semibold"
+                    >
+                      Manage Events
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/join-event"
+                      className="text-black text-[.8rem] font-semibold"
+                    >
+                      Join Events
+                    </Link>
+                  </li>
+                  <li>
+                    {user ? (
+                      <a
+                        className="text-black text-[.8rem] font-semibold"
+                        onClick={handleSignOut}
+                      >
+                        Logout
+                      </a>
+                    ) : (
+                      <Link
+                        className="text-black text-[.8rem] font-semibold"
+                        to="/login"
+                      >
+                        Login
+                      </Link>
+                    )}
+                  </li>
+                </ul>
+              </div>
+            )}
             <div>
               {user ? (
                 " "
@@ -119,6 +156,14 @@ const Navbar = () => {
                   <Link to="/login">LogIn</Link>
                 </button>
               )}
+            </div>
+            <div className="navbar">
+              <input
+                onChange={(e)=> handleTheme(e.target.checked)}
+                type="checkbox"
+                defaultChecked={localStorage.getItem("theme") === "dark"}
+                className="toggle bg-base-100"
+              />
             </div>
           </div>
         </div>
