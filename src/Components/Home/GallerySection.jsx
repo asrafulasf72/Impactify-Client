@@ -12,7 +12,7 @@ const galleryImages = [
 
 const GallerySection = () => {
   return (
-    <section className="py-20 bg-base-100" id="gallery">
+    <section className="py-15 bg-base-100" id="gallery">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}

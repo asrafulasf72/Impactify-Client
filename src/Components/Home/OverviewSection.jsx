@@ -3,7 +3,7 @@ import React from "react";
 const OverviewSection = () => {
   return (
     <section className="relative bg-[#f2f8f3] pb-16">
-      <div className="absolute top-[-80px] left-1/2 transform -translate-x-1/2 w-full flex justify-center z-30">
+      <div className="absolute top-[-40px] md:top-[-80px] left-1/2 transform -translate-x-1/2 w-full flex justify-center z-30">
         <div className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl flex flex-col md:flex-row overflow-hidden">
           {/* Text Part */}
           <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
