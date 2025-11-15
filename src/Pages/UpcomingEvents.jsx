@@ -14,7 +14,7 @@ const UpcomingEvents = () => {
 
   useEffect(()=>{
       const loadEvent=async()=>{
-           const res = await fetch(`http://localhost:3000/search-events?search=${searchText}&type=${filterType}`)
+           const res = await fetch(`https://impactify-server.vercel.app/search-events?search=${searchText}&type=${filterType}`)
            const filteredData = await res.json();
            setEvents(filteredData)
       }

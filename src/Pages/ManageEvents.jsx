@@ -7,7 +7,7 @@ const ManageEvents = () => {
   const [manageEvent, setManageEvent] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/manage-events?email=${user.email}`)
+    fetch(`https://impactify-server.vercel.app/manage-events?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setManageEvent(data);

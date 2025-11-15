@@ -23,7 +23,7 @@ export const router=createBrowserRouter([
             {
                 path:"/Upcoming-Events",
                 element:<UpcomingEvents></UpcomingEvents>,
-                loader: ()=> fetch("http://localhost:3000/event")
+                loader: ()=> fetch("https://impactify-server.vercel.app/event")
             },
             {
                 path:"/login",
@@ -40,7 +40,7 @@ export const router=createBrowserRouter([
             {
                 path:"/event-details/:id",
                 element:<EventDetails></EventDetails>,
-                loader: ({params})=> fetch(`http://localhost:3000/event-details/${params.id}`)
+                loader: ({params})=> fetch(`https://impactify-server.vercel.app/event-details/${params.id}`)
             },
             {
                 path:"/manage-events",
@@ -53,7 +53,7 @@ export const router=createBrowserRouter([
             {
                 path:'/update-event/:id',
                 element:<PrivateRouter><UpdateEvent /></PrivateRouter>,
-                loader: ({params})=> fetch(`http://localhost:3000/event/${params.id}`)
+                loader: ({params})=> fetch(`https://impactify-server.vercel.app/event/${params.id}`)
             }
 
         ]

@@ -8,9 +8,9 @@ const UpdateEvent = () => {
   const [eventDate, setEventDate] = useState(null);
   const data = useLoaderData();
   const navigate= useNavigate()
-  console.log(data)
+ 
   const { title, description, eventType, location, thumbnail,_id } = data;
-  console.log(data)
+  
  
 
   const handleUpdateEvent = (e) => {
@@ -23,7 +23,7 @@ const UpdateEvent = () => {
       location: e.target.location.value,
       event_date: eventDate,
     };
-    fetch(`http://localhost:3000/update-event/${_id}`, {
+    fetch(`https://impactify-server.vercel.app/update-event/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -32,12 +32,13 @@ const UpdateEvent = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         toast.success("Successfully updated!");
         
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+        toast.error(err.message)
       });
       navigate('/manage-events')
   };

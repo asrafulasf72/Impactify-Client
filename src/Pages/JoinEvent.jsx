@@ -10,7 +10,7 @@ const JoinEvent = () => {
 });
 
   useEffect(() => {
-    fetch(`http://localhost:3000/join-events?email=${user.email}`)
+    fetch(`https://impactify-server.vercel.app/join-events?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setJoinEvent(data);

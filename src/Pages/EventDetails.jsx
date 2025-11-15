@@ -36,7 +36,7 @@ const EventDetails = () => {
 
        }
 
-           fetch("http://localhost:3000/join-event",{
+           fetch("https://impactify-server.vercel.app/join-event",{
               method:"POST",
               headers:{
                 "Content-Type":"application/json",

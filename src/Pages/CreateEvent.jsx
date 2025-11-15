@@ -24,7 +24,7 @@ const CreateEvent = () => {
 
            }
            
-           fetch("http://localhost:3000/event",{
+           fetch("https://impactify-server.vercel.app/event",{
               method:"POST",
               headers:{
                 "Content-Type":"application/json",
@@ -34,10 +34,10 @@ const CreateEvent = () => {
            .then((res)=>res.json())
            .then((data)=>{
             toast.success("Event Created Successfully!!")
-            console.log(data)
+            // console.log(data)
            })
            .catch((error)=>{
-            console.log(error)
+             toast.error(error.message)
            })
            e.target.reset()
            navigate("/Upcoming-Events")
